@@ -41,10 +41,10 @@
     nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; padding: 22px 52px; display: flex; align-items: center; justify-content: space-between; transition: all .4s; }
     nav.scrolled { background: rgba(26,46,38,.92); backdrop-filter: blur(20px); padding: 14px 52px; border-bottom: 1px solid var(--glass-border); }
     .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 400; letter-spacing: .14em; text-transform: uppercase; color: #fff; text-decoration: none; }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links { display: flex; gap: 24px; list-style: none; flex-shrink: 1; }
     .nav-links a { font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: var(--text-inv-soft); text-decoration: none; transition: color .3s; }
     .nav-links a:hover { color: var(--gold); }
-    .nav-cta { font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,169,110,.45); padding: 10px 22px; text-decoration: none; transition: all .3s; }
+    .nav-cta { font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,169,110,.45); padding: 9px 18px; text-decoration: none; transition: all .3s; margin-left: 20px; flex-shrink: 0; }
     .nav-cta:hover { background: var(--gold); color: #fff; }
 
     /* ── HERO ── */
@@ -83,9 +83,9 @@
     .sw { font-family:"Cormorant Garamond",serif; font-size:clamp(1.8rem,4.5vw,4rem); font-weight:300; color:rgba(255,255,255,.07); display:inline; line-height:1.45; transition:color .35s ease, text-shadow .35s ease; }
     .sw.lit { color:rgba(255,255,255,.94); text-shadow:0 0 40px rgba(143,181,160,.18); }
     .strip { background: var(--jade-deep); padding: 16px 52px; display: flex; justify-content: center; gap: 48px; align-items: center; flex-wrap: wrap; border-bottom: 1px solid var(--glass-border); }
-    .strip-item { font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.38); }
+    .strip-item { font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.72); }
     .strip-item strong { color: var(--gold); font-weight: 400; }
-    .strip-dot { width: 3px; height: 3px; background: var(--gold); border-radius: 50%; opacity: .3; }
+    .strip-dot { width: 3px; height: 3px; background: var(--gold); border-radius: 50%; opacity: .55; }
 
     /* ── BASE SECTIONS ── */
     section { padding: 110px 8vw; }
@@ -129,7 +129,15 @@
     .modal-title { font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:#fff; margin-bottom:22px; line-height:1.2; }
     .modal-body p { font-size:.88rem; color:var(--text-inv-soft); line-height:1.9; font-weight:300; margin-bottom:14px; }
     .modal-offers { margin-top:26px; border-top:1px solid var(--glass-border); padding-top:26px; }
-    .modal-offer { display:flex; justify-content:space-between; align-items:center; padding:13px 0; border-bottom:1px solid var(--glass-border); gap:10px; }
+    .modal-offer { display:flex; justify-content:space-between; align-items:center; padding:13px 14px; border-bottom:1px solid var(--glass-border); gap:10px; cursor:pointer; transition:background .25s, border-color .25s; border-radius:2px; margin:0 -14px; position:relative; }
+    .modal-offer:hover { background:rgba(255,255,255,.05); }
+    .modal-offer.selected { background:rgba(125,170,138,.12); border-bottom-color:var(--gold); }
+    .modal-offer.selected::before { content:''; position:absolute; left:0; top:0; bottom:0; width:2px; background:var(--gold); border-radius:2px 0 0 2px; }
+    .modal-offer.selected .offer-name { color:var(--gold); }
+    .modal-offer.selected .offer-price { color:#fff; }
+    .modal-select-hint { font-size:.62rem; color:rgba(255,255,255,.32); letter-spacing:.1em; text-align:center; margin-top:10px; font-style:italic; transition:color .3s; }
+    .modal-select-hint.warn { color:#e87070; animation: warnPulse .4s ease; }
+    @keyframes warnPulse { 0%{transform:scale(1)} 40%{transform:scale(1.04)} 100%{transform:scale(1)} }
     .offer-name { font-size:.87rem; color:#fff; flex:1; }
     .offer-duration { font-size:.77rem; color:var(--text-inv-soft); white-space:nowrap; }
     .offer-price { font-size:.9rem; color:var(--gold); font-weight:500; white-space:nowrap; }
@@ -177,8 +185,8 @@
 
     /* ── RÉASSURANCE bon cadeau ── */
     .gift-reassurance { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:18px; }
-    .gift-re-item { font-size:.7rem; color:var(--text-light); display:flex; align-items:center; gap:8px; line-height:1.35; }
-    .gift-re-item svg { width:16px; height:16px; flex-shrink:0; color:var(--jade); }
+    .gift-re-item { font-size:.7rem; color:rgba(255,255,255,.82); display:flex; align-items:center; gap:8px; line-height:1.35; }
+    .gift-re-item svg { width:16px; height:16px; flex-shrink:0; color:var(--gold-light); }
     @media (max-width:640px) { .gift-reassurance { grid-template-columns:1fr; } }
 
     /* ── Avis Google vérifiés ── */
@@ -353,15 +361,154 @@
     .footer-copy { font-size:.68rem; color:rgba(255,255,255,.15); }
     .footer-legal { font-size:.64rem; color:rgba(255,255,255,.1); letter-spacing:.08em; text-transform:uppercase; }
 
+    /* ── HAMBURGER BUTTON ── */
+    .nav-burger { display:none; flex-direction:column; justify-content:center; gap:5px; width:38px; height:38px; background:none; border:1px solid rgba(255,255,255,.18); padding:8px; cursor:pointer; flex-shrink:0; transition:border-color .3s; }
+    .nav-burger span { display:block; height:1px; background:#fff; transition:all .35s ease; transform-origin:center; }
+    .nav-burger.open span:nth-child(1) { transform:translateY(6px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+    .nav-burger.open span:nth-child(3) { transform:translateY(-6px) rotate(-45deg); }
+    .nav-burger:hover { border-color:var(--gold); }
+
+    /* ── MOBILE MENU OVERLAY ── */
+    .nav-mobile-overlay { position:fixed; inset:0; z-index:999; background:var(--jade-deep); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0; opacity:0; pointer-events:none; transform:translateY(-12px); transition:opacity .35s ease, transform .35s ease; }
+    .nav-mobile-overlay.open { opacity:1; pointer-events:all; transform:translateY(0); }
+    .nav-mobile-close { position:absolute; top:22px; right:22px; background:none; border:none; font-size:2rem; color:rgba(255,255,255,.5); cursor:pointer; line-height:1; transition:color .3s; }
+    .nav-mobile-close:hover { color:#fff; }
+    .nav-mobile-links { list-style:none; text-align:center; padding:0; margin:0; width:100%; }
+    .nav-mobile-links li { border-bottom:1px solid rgba(255,255,255,.06); }
+    .nav-mobile-link { display:block; font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:300; color:rgba(255,255,255,.75); text-decoration:none; padding:18px 40px; letter-spacing:.06em; transition:color .25s, padding-left .25s; }
+    .nav-mobile-link:hover, .nav-mobile-link:active { color:var(--gold); padding-left:52px; }
+    .nav-mobile-cta { display:inline-block; margin-top:32px; font-family:'Jost',sans-serif; font-size:.72rem; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(201,169,110,.45); padding:14px 32px; transition:all .3s; }
+    .nav-mobile-cta:hover { background:var(--gold); color:#fff; }
+    .nav-mobile-addr { margin-top:18px; font-size:.65rem; letter-spacing:.12em; color:rgba(255,255,255,.25); }
+
+    /* ── RESPONSIVE 900px — TABLETTE / MOBILE ── */
     @media(max-width:900px){
-      nav{padding:18px 20px} nav.scrolled{padding:12px 20px} .nav-links{display:none}
-      section{padding:70px 5vw}
-      .srv-grid,.aa-grid,.infos,.gift-grid,.rdv-inner,.approche{grid-template-columns:1fr}
-      .rev-card{min-width:280px; max-width:280px}
-      .strip{gap:18px; padding:18px}
-      .footer-top{flex-direction:column; gap:18px; text-align:center}
-      .footer-nav{flex-wrap:wrap; justify-content:center}
-      .gift-options{grid-template-columns:1fr}
+      /* NAV */
+      nav { padding:16px 20px; }
+      nav.scrolled { padding:12px 20px; }
+      .nav-links { display:none; }
+      .nav-cta { display:none; }
+      .nav-address { display:none; }
+      .nav-burger { display:flex; }
+
+      /* SECTIONS */
+      section { padding:72px 6vw; }
+
+      /* HERO */
+      .hero-content { padding:0 6vw 12vh; max-width:100%; }
+      .hero-title { font-size:clamp(2.4rem,8vw,4.2rem); }
+      .hero-desc { max-width:100%; font-size:.86rem; }
+      .hero-actions { flex-direction:column; align-items:flex-start; gap:16px; }
+      .hero-orb1 { width:180px; height:180px; }
+      .hero-orb2 { width:120px; height:120px; }
+      .hero-scroll { right:20px; }
+
+      /* STRIP */
+      .strip { gap:14px; padding:16px 20px; flex-direction:column; align-items:flex-start; }
+      .strip-dot { display:none; }
+
+      /* SERVICES */
+      .srv-header { flex-direction:column; align-items:flex-start; gap:14px; }
+      .srv-grid { grid-template-columns:1fr; gap:1px; }
+
+      /* AVANT/APRÈS */
+      .aa-grid { grid-template-columns:1fr; gap:16px; }
+
+      /* AVIS */
+      .rev-header { flex-direction:column; align-items:flex-start; gap:14px; }
+      .rev-card { min-width:260px; max-width:260px; }
+
+      /* APPROCHE */
+      .approche { grid-template-columns:1fr; }
+      .approche-visual { min-height:300px; }
+      .approche-glass { margin:24px; padding:32px; }
+      .approche-glass blockquote { font-size:1.4rem; }
+      .approche-content { padding:52px 32px; }
+
+      /* INFOS */
+      .infos { grid-template-columns:1fr; }
+      .info-card { padding:36px 28px; }
+
+      /* BON CADEAU */
+      .gift-grid { grid-template-columns:1fr; gap:36px; }
+      .gift-options { grid-template-columns:1fr 1fr; }
+      .stripe-widget { padding:26px 20px; }
+
+      /* RDV */
+      .rdv-inner { grid-template-columns:1fr; gap:40px; }
+
+      /* MODAL */
+      .modal-box { padding:32px 24px; width:96%; max-height:94vh; }
+      .modal-title { font-size:1.6rem; }
+      .modal-ctas { grid-template-columns:1fr; }
+
+      /* FAQ */
+      .faq-q { font-size:1.1rem; }
+
+      /* FOOTER */
+      .footer-top { flex-direction:column; gap:18px; text-align:center; }
+      .footer-nav { flex-wrap:wrap; justify-content:center; gap:14px; }
+      .footer-bottom { flex-direction:column; align-items:center; gap:6px; text-align:center; }
+    }
+
+    /* ── RESPONSIVE 640px — MOBILE ── */
+    @media(max-width:640px){
+      section { padding:60px 5vw; }
+
+      /* HERO */
+      .hero-content { padding:0 5vw 14vh; }
+      .hero-title { font-size:clamp(2rem,9vw,3rem); line-height:1.08; }
+      .hero-tag { font-size:.6rem; margin-bottom:14px; }
+      .hero-desc { font-size:.83rem; margin-bottom:32px; }
+      .btn-jade { width:100%; text-align:center; padding:14px 20px; }
+      .btn-outline { font-size:.65rem; }
+
+      /* STRIP */
+      .strip { padding:14px 5vw; gap:10px; }
+      .strip-item { font-size:.6rem; }
+
+      /* SERVICES */
+      .srv-card { padding:30px 20px; }
+      .srv-name { font-size:1.25rem; }
+      .srv-header { margin-bottom:32px; }
+      h2 { font-size:clamp(1.8rem,7vw,2.6rem); }
+
+      /* AVIS */
+      .rev-track { gap:12px; }
+      .rev-card { min-width:calc(100vw - 40px); max-width:calc(100vw - 40px); padding:24px 20px; }
+      .rev-slider { overflow:hidden; }
+
+      /* APPROCHE */
+      .approche-glass { margin:16px; padding:24px 20px; }
+      .approche-glass blockquote { font-size:1.2rem; }
+      .approche-content { padding:36px 20px; }
+
+      /* BON CADEAU */
+      .gift-options { grid-template-columns:1fr; }
+      .gift-reassurance { grid-template-columns:1fr; }
+
+      /* MODAL */
+      .modal-box { padding:28px 18px; border-radius:0; width:100%; max-height:100vh; }
+      .modal-overlay { align-items:flex-end; }
+      .modal-offer { padding:11px 10px; margin:0 -10px; }
+
+      /* INFOS */
+      .info-card { padding:28px 20px; }
+
+      /* FOOTER */
+      .footer-nav a { font-size:.6rem; }
+      .footer-cta { font-size:.6rem; padding:9px 18px; }
+
+      /* CURSOR : désactivé sur mobile */
+      .cursor, .cursor-ring { display:none; }
+    }
+
+    /* ── RESPONSIVE 375px — TRÈS PETIT MOBILE ── */
+    @media(max-width:375px){
+      .hero-title { font-size:2rem; }
+      .nav-logo { font-size:.9rem; letter-spacing:.1em; }
+      .modal-box { padding:22px 14px; }
     }
   </style>
 </head>
@@ -383,7 +530,24 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="#rdv" class="nav-cta">Voir les disponibilités</a>
+  <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<!-- MENU MOBILE OVERLAY -->
+<div class="nav-mobile-overlay" id="navMobile">
+  <button class="nav-mobile-close" id="navMobileClose" aria-label="Fermer">×</button>
+  <ul class="nav-mobile-links">
+    <li><a href="#soins" class="nav-mobile-link">Soins</a></li>
+    <li><a href="#avant-apres" class="nav-mobile-link">Résultats</a></li>
+    <li><a href="#avis" class="nav-mobile-link">Avis</a></li>
+    <li><a href="#faq" class="nav-mobile-link">FAQ</a></li>
+    <li><a href="#rdv" class="nav-mobile-link">Rendez-vous</a></li>
+    <li><a href="#contact" class="nav-mobile-link">Contact</a></li>
+  </ul>
+  <a href="#rdv" class="nav-mobile-cta nav-mobile-link">Voir les disponibilités</a>
+  <p class="nav-mobile-addr">📍 Bois d'Amont · Jura</p>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -481,15 +645,16 @@
   <p class="modal-tag">Soin 01 — Visage</p>
   <div class="modal-title">Soins Visage <em style="font-style:italic;color:var(--gold)">Énergétiques</em></div>
   <div class="modal-body"><p>Nos soins visage allient techniques esthétiques et approche énergétique pour une peau véritablement régénérée. Chaque séance débute par un diagnostic complet.</p><p>Gamme exclusive <strong style="color:#fff">Êtres Cosmétique</strong>, naturelle et respectueuse de votre peau.</p></div>
-  <div class="modal-offers">
-    <div class="modal-offer"><span class="offer-name">Soin express éclat</span><span class="offer-duration">45 min</span><span class="offer-price">55€</span></div>
-    <div class="modal-offer"><span class="offer-name">Soin anti-âge signature</span><span class="offer-duration">75 min</span><span class="offer-price">85€</span></div>
-    <div class="modal-offer"><span class="offer-name">Soin profond régénérant</span><span class="offer-duration">90 min</span><span class="offer-price">95€</span></div>
-    <div class="modal-offer"><span class="offer-name">Soin énergétique complet</span><span class="offer-duration">90 min</span><span class="offer-price">105€</span></div>
+  <div class="modal-offers" id="offers-visage">
+    <div class="modal-offer selected" data-name="Soin express éclat" data-price="55"><span class="offer-name">Soin express éclat</span><span class="offer-duration">45 min</span><span class="offer-price">55€</span></div>
+    <div class="modal-offer" data-name="Soin anti-âge signature" data-price="85"><span class="offer-name">Soin anti-âge signature</span><span class="offer-duration">75 min</span><span class="offer-price">85€</span></div>
+    <div class="modal-offer" data-name="Soin profond régénérant" data-price="95"><span class="offer-name">Soin profond régénérant</span><span class="offer-duration">90 min</span><span class="offer-price">95€</span></div>
+    <div class="modal-offer" data-name="Soin énergétique complet" data-price="105"><span class="offer-name">Soin énergétique complet</span><span class="offer-duration">90 min</span><span class="offer-price">105€</span></div>
   </div>
+  <p class="modal-select-hint" id="hint-visage">Cliquez sur une prestation pour la sélectionner</p>
   <div class="modal-ctas">
-    <button class="modal-cta modal-cta-onsite" onclick="closeModal('visage');bookOnSite()">Réserver<span class="modal-cta-small">Paiement sur place</span></button>
-    <button class="modal-cta modal-cta-online" onclick="closeModal('visage');openStripeModal('Soin Visage Signature',85)">Payer en ligne<span class="modal-cta-small">Créneau confirmé</span></button>
+    <button class="modal-cta modal-cta-onsite" onclick="handleBook('visage','onsite')">Réserver<span class="modal-cta-small">Paiement sur place</span></button>
+    <button class="modal-cta modal-cta-online" onclick="handleBook('visage','online')">Payer en ligne<span class="modal-cta-small">Créneau confirmé</span></button>
   </div>
 </div></div>
 
@@ -498,15 +663,16 @@
   <p class="modal-tag">Soin 02 — Corps</p>
   <div class="modal-title">Massages <em style="font-style:italic;color:var(--gold)">Énergétiques</em></div>
   <div class="modal-body"><p>Mes massages rééquilibrent votre énergie vitale, libèrent les tensions profondes et vous reconnectent à vous-même.</p></div>
-  <div class="modal-offers">
-    <div class="modal-offer"><span class="offer-name">Massage dos & nuque</span><span class="offer-duration">45 min</span><span class="offer-price">65€</span></div>
-    <div class="modal-offer"><span class="offer-name">Massage corps complet</span><span class="offer-duration">60 min</span><span class="offer-price">80€</span></div>
-    <div class="modal-offer"><span class="offer-name">Massage énergétique signature</span><span class="offer-duration">90 min</span><span class="offer-price">110€</span></div>
-    <div class="modal-offer"><span class="offer-name">Rituel corps & visage</span><span class="offer-duration">2h</span><span class="offer-price">145€</span></div>
+  <div class="modal-offers" id="offers-massages">
+    <div class="modal-offer selected" data-name="Massage dos & nuque" data-price="65"><span class="offer-name">Massage dos &amp; nuque</span><span class="offer-duration">45 min</span><span class="offer-price">65€</span></div>
+    <div class="modal-offer" data-name="Massage corps complet" data-price="80"><span class="offer-name">Massage corps complet</span><span class="offer-duration">60 min</span><span class="offer-price">80€</span></div>
+    <div class="modal-offer" data-name="Massage énergétique signature" data-price="110"><span class="offer-name">Massage énergétique signature</span><span class="offer-duration">90 min</span><span class="offer-price">110€</span></div>
+    <div class="modal-offer" data-name="Rituel corps & visage" data-price="145"><span class="offer-name">Rituel corps &amp; visage</span><span class="offer-duration">2h</span><span class="offer-price">145€</span></div>
   </div>
+  <p class="modal-select-hint" id="hint-massages">Cliquez sur une prestation pour la sélectionner</p>
   <div class="modal-ctas">
-    <button class="modal-cta modal-cta-onsite" onclick="closeModal('massages');bookOnSite()">Réserver<span class="modal-cta-small">Paiement sur place</span></button>
-    <button class="modal-cta modal-cta-online" onclick="closeModal('massages');openStripeModal('Massage Énergétique Signature',110)">Payer en ligne<span class="modal-cta-small">Créneau confirmé</span></button>
+    <button class="modal-cta modal-cta-onsite" onclick="handleBook('massages','onsite')">Réserver<span class="modal-cta-small">Paiement sur place</span></button>
+    <button class="modal-cta modal-cta-online" onclick="handleBook('massages','online')">Payer en ligne<span class="modal-cta-small">Créneau confirmé</span></button>
   </div>
 </div></div>
 
@@ -515,14 +681,15 @@
   <p class="modal-tag">Soin 03 — Mains & Pieds</p>
   <div class="modal-title">Soins <em style="font-style:italic;color:var(--gold)">Mains & Pieds</em></div>
   <div class="modal-body"><p>Gommage, hydratation intensive et modelage pour des extrémités sublimées. Résultats immédiats et durables.</p></div>
-  <div class="modal-offers">
-    <div class="modal-offer"><span class="offer-name">Manucure soin</span><span class="offer-duration">45 min</span><span class="offer-price">35€</span></div>
-    <div class="modal-offer"><span class="offer-name">Pédicure soin</span><span class="offer-duration">60 min</span><span class="offer-price">45€</span></div>
-    <div class="modal-offer"><span class="offer-name">Duo mains & pieds</span><span class="offer-duration">90 min</span><span class="offer-price">72€</span></div>
+  <div class="modal-offers" id="offers-mains">
+    <div class="modal-offer selected" data-name="Manucure soin" data-price="35"><span class="offer-name">Manucure soin</span><span class="offer-duration">45 min</span><span class="offer-price">35€</span></div>
+    <div class="modal-offer" data-name="Pédicure soin" data-price="45"><span class="offer-name">Pédicure soin</span><span class="offer-duration">60 min</span><span class="offer-price">45€</span></div>
+    <div class="modal-offer" data-name="Duo mains & pieds" data-price="72"><span class="offer-name">Duo mains &amp; pieds</span><span class="offer-duration">90 min</span><span class="offer-price">72€</span></div>
   </div>
+  <p class="modal-select-hint" id="hint-mains">Cliquez sur une prestation pour la sélectionner</p>
   <div class="modal-ctas">
-    <button class="modal-cta modal-cta-onsite" onclick="closeModal('mains');bookOnSite()">Réserver<span class="modal-cta-small">Paiement sur place</span></button>
-    <button class="modal-cta modal-cta-online" onclick="closeModal('mains');openStripeModal('Duo Mains & Pieds',72)">Payer en ligne<span class="modal-cta-small">Créneau confirmé</span></button>
+    <button class="modal-cta modal-cta-onsite" onclick="handleBook('mains','onsite')">Réserver<span class="modal-cta-small">Paiement sur place</span></button>
+    <button class="modal-cta modal-cta-online" onclick="handleBook('mains','online')">Payer en ligne<span class="modal-cta-small">Créneau confirmé</span></button>
   </div>
 </div></div>
 
@@ -531,14 +698,15 @@
   <p class="modal-tag">Soin 04 — Minceur</p>
   <div class="modal-title">Accompagnement <em style="font-style:italic;color:var(--gold)">Minceur</em></div>
   <div class="modal-body"><p>Approche globale et bienveillante. Diagnostic personnalisé pour identifier et lever vos blocages physiques, émotionnels ou énergétiques.</p></div>
-  <div class="modal-offers">
-    <div class="modal-offer"><span class="offer-name">Séance diagnostic</span><span class="offer-duration">60 min</span><span class="offer-price">75€</span></div>
-    <div class="modal-offer"><span class="offer-name">Soin minceur ciblé</span><span class="offer-duration">60 min</span><span class="offer-price">85€</span></div>
-    <div class="modal-offer"><span class="offer-name">Programme 5 séances</span><span class="offer-duration">Suivi</span><span class="offer-price">350€</span></div>
+  <div class="modal-offers" id="offers-minceur">
+    <div class="modal-offer selected" data-name="Séance diagnostic" data-price="75"><span class="offer-name">Séance diagnostic</span><span class="offer-duration">60 min</span><span class="offer-price">75€</span></div>
+    <div class="modal-offer" data-name="Soin minceur ciblé" data-price="85"><span class="offer-name">Soin minceur ciblé</span><span class="offer-duration">60 min</span><span class="offer-price">85€</span></div>
+    <div class="modal-offer" data-name="Programme 5 séances" data-price="350"><span class="offer-name">Programme 5 séances</span><span class="offer-duration">Suivi</span><span class="offer-price">350€</span></div>
   </div>
+  <p class="modal-select-hint" id="hint-minceur">Cliquez sur une prestation pour la sélectionner</p>
   <div class="modal-ctas">
-    <button class="modal-cta modal-cta-onsite" onclick="closeModal('minceur');bookOnSite()">Réserver<span class="modal-cta-small">Paiement sur place</span></button>
-    <button class="modal-cta modal-cta-online" onclick="closeModal('minceur');openStripeModal('Séance Diagnostic Minceur',75)">Payer en ligne<span class="modal-cta-small">Créneau confirmé</span></button>
+    <button class="modal-cta modal-cta-onsite" onclick="handleBook('minceur','onsite')">Réserver<span class="modal-cta-small">Paiement sur place</span></button>
+    <button class="modal-cta modal-cta-online" onclick="handleBook('minceur','online')">Payer en ligne<span class="modal-cta-small">Créneau confirmé</span></button>
   </div>
 </div></div>
 
@@ -547,16 +715,17 @@
   <p class="modal-tag">Soin 05 — Épilation</p>
   <div class="modal-title">Épilation <em style="font-style:italic;color:var(--gold)">Traditionnelle & Définitive</em></div>
   <div class="modal-body"><p>Épilation à la cire ou définitive, réalisée avec précision dans le respect de votre confort.</p></div>
-  <div class="modal-offers">
-    <div class="modal-offer"><span class="offer-name">Demi-jambes</span><span class="offer-duration">30 min</span><span class="offer-price">22€</span></div>
-    <div class="modal-offer"><span class="offer-name">Jambes complètes</span><span class="offer-duration">45 min</span><span class="offer-price">35€</span></div>
-    <div class="modal-offer"><span class="offer-name">Maillot classique</span><span class="offer-duration">20 min</span><span class="offer-price">18€</span></div>
-    <div class="modal-offer"><span class="offer-name">Aisselles</span><span class="offer-duration">15 min</span><span class="offer-price">12€</span></div>
-    <div class="modal-offer"><span class="offer-name">Corps complet</span><span class="offer-duration">90 min</span><span class="offer-price">90€</span></div>
+  <div class="modal-offers" id="offers-epilation">
+    <div class="modal-offer selected" data-name="Demi-jambes" data-price="22"><span class="offer-name">Demi-jambes</span><span class="offer-duration">30 min</span><span class="offer-price">22€</span></div>
+    <div class="modal-offer" data-name="Jambes complètes" data-price="35"><span class="offer-name">Jambes complètes</span><span class="offer-duration">45 min</span><span class="offer-price">35€</span></div>
+    <div class="modal-offer" data-name="Maillot classique" data-price="18"><span class="offer-name">Maillot classique</span><span class="offer-duration">20 min</span><span class="offer-price">18€</span></div>
+    <div class="modal-offer" data-name="Aisselles" data-price="12"><span class="offer-name">Aisselles</span><span class="offer-duration">15 min</span><span class="offer-price">12€</span></div>
+    <div class="modal-offer" data-name="Corps complet" data-price="90"><span class="offer-name">Corps complet</span><span class="offer-duration">90 min</span><span class="offer-price">90€</span></div>
   </div>
+  <p class="modal-select-hint" id="hint-epilation">Cliquez sur une prestation pour la sélectionner</p>
   <div class="modal-ctas">
-    <button class="modal-cta modal-cta-onsite" onclick="closeModal('epilation');bookOnSite()">Réserver<span class="modal-cta-small">Paiement sur place</span></button>
-    <button class="modal-cta modal-cta-online" onclick="closeModal('epilation');openStripeModal('Épilation Jambes Complètes',35)">Payer en ligne<span class="modal-cta-small">Créneau confirmé</span></button>
+    <button class="modal-cta modal-cta-onsite" onclick="handleBook('epilation','onsite')">Réserver<span class="modal-cta-small">Paiement sur place</span></button>
+    <button class="modal-cta modal-cta-online" onclick="handleBook('epilation','online')">Payer en ligne<span class="modal-cta-small">Créneau confirmé</span></button>
   </div>
 </div></div>
 
@@ -910,6 +1079,56 @@
 
 <script>
 
+// ── SÉLECTION DE PRESTATION DANS LES MODALS ──
+// Rend chaque ligne d'offre cliquable et mémorise la sélection
+document.querySelectorAll('.modal-offers').forEach(wrapper => {
+  const modalId = wrapper.id.replace('offers-', '');
+  wrapper.querySelectorAll('.modal-offer').forEach(row => {
+    row.addEventListener('click', () => {
+      // Désélectionner toutes les lignes du même modal
+      wrapper.querySelectorAll('.modal-offer').forEach(r => r.classList.remove('selected'));
+      // Sélectionner celle cliquée
+      row.classList.add('selected');
+      // Mettre à jour le hint
+      const hint = document.getElementById('hint-' + modalId);
+      if (hint) {
+        hint.textContent = '✓ ' + row.dataset.name + ' — ' + row.dataset.price + '€ sélectionné·e';
+        hint.classList.remove('warn');
+      }
+    });
+  });
+});
+
+// Récupère l'offre sélectionnée dans un modal, renvoie {name, price} ou null
+function getSelectedOffer(modalId) {
+  const wrap = document.getElementById('offers-' + modalId);
+  if (!wrap) return null;
+  const sel = wrap.querySelector('.modal-offer.selected');
+  if (!sel) return null;
+  return { name: sel.dataset.name, price: parseInt(sel.dataset.price, 10) };
+}
+
+// Bouton de réservation unifié : action = 'onsite' | 'online'
+function handleBook(modalId, action) {
+  const offer = getSelectedOffer(modalId);
+  if (!offer) {
+    // Aucune prestation sélectionnée → alerte visuelle sur le hint
+    const hint = document.getElementById('hint-' + modalId);
+    if (hint) {
+      hint.textContent = '⚠ Veuillez choisir une prestation ci-dessus';
+      hint.classList.add('warn');
+      hint.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    return;
+  }
+  closeModal(modalId);
+  if (action === 'online') {
+    openStripeModal(offer.name, offer.price);
+  } else {
+    bookOnSite();
+  }
+}
+
 // ── NOUVELLES FONCTIONS UX ──
 function bookOnSite() {
   window.open('https://app.kiute.com/metamorphose-1','_blank');
@@ -957,12 +1176,16 @@ window.addEventListener('scroll', updatePhrase, {passive:true});
 window.addEventListener('resize', updatePhrase);
 updatePhrase();
 
-// ── CURSOR ──
+// ── CURSOR (desktop uniquement) ──
 const cur=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+const isTouchDevice = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+if(isTouchDevice){ cur.style.display='none'; ring.style.display='none'; document.body.style.cursor='auto'; }
 let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
-(function t(){rx+=(mx-rx)*.16;ry+=(my-ry)*.16;cur.style.left=mx+'px';cur.style.top=my+'px';ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(t);})();
-document.querySelectorAll('a,button,.srv-card,.aa-card,.gift-opt').forEach(el=>{
+if(!isTouchDevice){
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+  (function t(){rx+=(mx-rx)*.16;ry+=(my-ry)*.16;cur.style.left=mx+'px';cur.style.top=my+'px';ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(t);})();
+}
+document.querySelectorAll('a,button,.srv-card,.aa-card,.gift-opt,.modal-offer').forEach(el=>{
   el.addEventListener('mouseenter',()=>{cur.classList.add('hov');ring.classList.add('hov');});
   el.addEventListener('mouseleave',()=>{cur.classList.remove('hov');ring.classList.remove('hov');});
 });
@@ -970,6 +1193,31 @@ document.querySelectorAll('a,button,.srv-card,.aa-card,.gift-opt').forEach(el=>{
 // ── NAV ──
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60),{passive:true});
+
+// ── HAMBURGER MENU ──
+const burger=document.getElementById('navBurger');
+const mobileMenu=document.getElementById('navMobile');
+const mobileClose=document.getElementById('navMobileClose');
+function openMobileMenu(){
+  burger.classList.add('open');
+  burger.setAttribute('aria-expanded','true');
+  mobileMenu.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeMobileMenu(){
+  burger.classList.remove('open');
+  burger.setAttribute('aria-expanded','false');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow='';
+}
+burger.addEventListener('click', openMobileMenu);
+mobileClose.addEventListener('click', closeMobileMenu);
+// Fermeture sur clic d'un lien
+document.querySelectorAll('.nav-mobile-link').forEach(l=>{
+  l.addEventListener('click', closeMobileMenu);
+});
+// Fermeture sur Escape
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeMobileMenu(); });
 
 // ── SCROLL REVEAL ──
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');}),{threshold:.1,rootMargin:'0px 0px -50px 0px'});
