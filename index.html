@@ -135,6 +135,56 @@
     .offer-price { font-size:.9rem; color:var(--gold); font-weight:500; white-space:nowrap; }
     .modal-stripe-btn { display:block; width:100%; margin-top:26px; padding:14px; background:var(--gold); color:#fff; font-family:'Jost',sans-serif; font-size:.68rem; letter-spacing:.22em; text-transform:uppercase; border:none; cursor:pointer; transition:background .3s; }
     .modal-stripe-btn:hover { background:var(--gold-light); }
+    /* 2 CTAs par soin */
+    .modal-ctas { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:26px; }
+    .modal-cta { padding:14px 10px; font-family:'Jost',sans-serif; font-size:.64rem; letter-spacing:.2em; text-transform:uppercase; border:none; cursor:pointer; transition:all .3s; text-align:center; line-height:1.3; }
+    .modal-cta-onsite { background:transparent; color:#fff; border:1px solid rgba(255,255,255,.35); }
+    .modal-cta-onsite:hover { border-color:var(--gold); color:var(--gold); }
+    .modal-cta-online { background:var(--gold); color:#fff; }
+    .modal-cta-online:hover { background:var(--gold-light); }
+    .modal-cta-small { display:block; font-size:.55rem; opacity:.7; margin-top:3px; letter-spacing:.1em; font-weight:300; }
+    @media (max-width:640px) { .modal-ctas { grid-template-columns:1fr; } }
+
+    /* ── FAQ ── */
+    .faq-section { background:var(--warm-white); padding:110px 8vw; }
+    .faq-inner { max-width:880px; margin:0 auto; }
+    .faq-header { text-align:center; margin-bottom:60px; }
+    .faq-list { display:flex; flex-direction:column; gap:2px; }
+    .faq-item { border-top:1px solid rgba(61,97,84,.18); }
+    .faq-item:last-child { border-bottom:1px solid rgba(61,97,84,.18); }
+    .faq-q { width:100%; padding:26px 0; background:none; border:none; text-align:left; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:20px; font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:400; color:var(--jade-deep); transition:color .3s; }
+    .faq-q:hover { color:var(--gold); }
+    .faq-q .faq-plus { flex-shrink:0; width:28px; height:28px; border:1px solid var(--jade); border-radius:50%; display:flex; align-items:center; justify-content:center; position:relative; transition:all .3s; }
+    .faq-q .faq-plus::before, .faq-q .faq-plus::after { content:''; position:absolute; background:var(--jade); }
+    .faq-q .faq-plus::before { width:10px; height:1.5px; }
+    .faq-q .faq-plus::after { width:1.5px; height:10px; transition:transform .3s; }
+    .faq-item.open .faq-q .faq-plus { background:var(--jade); }
+    .faq-item.open .faq-q .faq-plus::before, .faq-item.open .faq-q .faq-plus::after { background:#fff; }
+    .faq-item.open .faq-q .faq-plus::after { transform:scaleY(0); }
+    .faq-a { max-height:0; overflow:hidden; transition:max-height .5s ease; }
+    .faq-a-inner { padding:0 0 28px 0; font-size:.88rem; color:var(--text-light); line-height:1.75; font-weight:300; max-width:680px; }
+    .faq-item.open .faq-a { max-height:400px; }
+
+    /* ── STICKY MOBILE CTA ── */
+    .sticky-mobile-cta { display:none; position:fixed; bottom:16px; left:16px; right:16px; z-index:80; background:var(--jade-deep); color:#fff; padding:16px; text-align:center; text-decoration:none; font-family:'Jost',sans-serif; font-size:.7rem; letter-spacing:.22em; text-transform:uppercase; box-shadow:0 8px 30px rgba(0,0,0,.25); border:1px solid rgba(201,169,110,.4); }
+    .sticky-mobile-cta strong { color:var(--gold); letter-spacing:.22em; }
+    @media (max-width:820px) { .sticky-mobile-cta { display:block; } }
+
+    /* ── NAV : adresse visible ── */
+    .nav-address { display:none; font-size:.65rem; letter-spacing:.12em; text-transform:uppercase; color:var(--text-inv-soft); margin-right:auto; margin-left:24px; }
+    .nav-address strong { color:var(--gold); font-weight:400; letter-spacing:.12em; }
+    @media (min-width:900px) { .nav-address { display:inline-flex; align-items:center; gap:6px; } }
+
+    /* ── RÉASSURANCE bon cadeau ── */
+    .gift-reassurance { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:18px; }
+    .gift-re-item { font-size:.7rem; color:var(--text-light); display:flex; align-items:center; gap:8px; line-height:1.35; }
+    .gift-re-item svg { width:16px; height:16px; flex-shrink:0; color:var(--jade); }
+    @media (max-width:640px) { .gift-reassurance { grid-template-columns:1fr; } }
+
+    /* ── Avis Google vérifiés ── */
+    .rev-verified { display:inline-flex; align-items:center; gap:10px; font-size:.68rem; letter-spacing:.16em; text-transform:uppercase; color:var(--text-light); margin-top:14px; padding:8px 16px; border:1px solid rgba(61,97,84,.2); background:#fff; text-decoration:none; transition:all .3s; }
+    .rev-verified:hover { border-color:var(--jade); color:var(--jade); }
+    .rev-verified svg { width:18px; height:18px; }
 
     /* ── AVANT / APRÈS — SLIDER DRAG ── */
     .aa-section { background: var(--jade-deep); }
@@ -323,14 +373,16 @@
 <!-- NAV -->
 <nav id="nav">
   <a href="#" class="nav-logo">La Voie du Mieux Être</a>
+  <span class="nav-address">📍 <strong>Bois d'Amont</strong> · Jura</span>
   <ul class="nav-links">
     <li><a href="#soins">Soins</a></li>
     <li><a href="#avant-apres">Résultats</a></li>
     <li><a href="#avis">Avis</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#rdv">Rendez-vous</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="#rdv" class="nav-cta">Réserver</a>
+  <a href="#rdv" class="nav-cta">Voir les disponibilités</a>
 </nav>
 
 <!-- HERO -->
@@ -346,7 +398,7 @@
     <h1 class="hero-title">L'art du soin,<br><em>au naturel.</em></h1>
     <p class="hero-desc">Une approche unique mêlant esthétique et énergétique, pour révéler votre beauté intérieure et extérieure dans un écrin de sérénité.</p>
     <div class="hero-actions">
-      <a href="#rdv" class="btn-jade">Prendre rendez-vous</a>
+      <a href="#rdv" class="btn-jade">Réserver mon moment</a>
       <button class="btn-outline" onclick="document.getElementById('soins').scrollIntoView({behavior:'smooth'})">Découvrir les soins</button>
     </div>
   </div>
@@ -381,7 +433,7 @@
 <section class="services-section" id="soins">
   <div class="srv-header">
     <div><p class="label label-inv reveal">Prestations</p><h2 class="inv reveal d1">Nos <em>soins</em><br>signature</h2></div>
-    <a href="#rdv" class="btn-jade reveal d2">Réserver un soin</a>
+    <a href="#rdv" class="btn-jade reveal d2">Voir les disponibilités</a>
   </div>
   <div class="srv-grid">
     <div class="srv-card reveal" onclick="openModal('visage')">
@@ -435,7 +487,10 @@
     <div class="modal-offer"><span class="offer-name">Soin profond régénérant</span><span class="offer-duration">90 min</span><span class="offer-price">95€</span></div>
     <div class="modal-offer"><span class="offer-name">Soin énergétique complet</span><span class="offer-duration">90 min</span><span class="offer-price">105€</span></div>
   </div>
-  <button class="modal-stripe-btn" onclick="closeModal('visage');openStripeModal('Soin Visage Signature',85)">Réserver & payer en ligne →</button>
+  <div class="modal-ctas">
+    <button class="modal-cta modal-cta-onsite" onclick="closeModal('visage');bookOnSite()">Réserver<span class="modal-cta-small">Paiement sur place</span></button>
+    <button class="modal-cta modal-cta-online" onclick="closeModal('visage');openStripeModal('Soin Visage Signature',85)">Payer en ligne<span class="modal-cta-small">Créneau confirmé</span></button>
+  </div>
 </div></div>
 
 <div class="modal-overlay" id="modal-massages"><div class="modal-box">
@@ -449,7 +504,10 @@
     <div class="modal-offer"><span class="offer-name">Massage énergétique signature</span><span class="offer-duration">90 min</span><span class="offer-price">110€</span></div>
     <div class="modal-offer"><span class="offer-name">Rituel corps & visage</span><span class="offer-duration">2h</span><span class="offer-price">145€</span></div>
   </div>
-  <button class="modal-stripe-btn" onclick="closeModal('massages');openStripeModal('Massage Énergétique Signature',110)">Réserver & payer en ligne →</button>
+  <div class="modal-ctas">
+    <button class="modal-cta modal-cta-onsite" onclick="closeModal('massages');bookOnSite()">Réserver<span class="modal-cta-small">Paiement sur place</span></button>
+    <button class="modal-cta modal-cta-online" onclick="closeModal('massages');openStripeModal('Massage Énergétique Signature',110)">Payer en ligne<span class="modal-cta-small">Créneau confirmé</span></button>
+  </div>
 </div></div>
 
 <div class="modal-overlay" id="modal-mains"><div class="modal-box">
@@ -462,7 +520,10 @@
     <div class="modal-offer"><span class="offer-name">Pédicure soin</span><span class="offer-duration">60 min</span><span class="offer-price">45€</span></div>
     <div class="modal-offer"><span class="offer-name">Duo mains & pieds</span><span class="offer-duration">90 min</span><span class="offer-price">72€</span></div>
   </div>
-  <button class="modal-stripe-btn" onclick="closeModal('mains');openStripeModal('Duo Mains & Pieds',72)">Réserver & payer en ligne →</button>
+  <div class="modal-ctas">
+    <button class="modal-cta modal-cta-onsite" onclick="closeModal('mains');bookOnSite()">Réserver<span class="modal-cta-small">Paiement sur place</span></button>
+    <button class="modal-cta modal-cta-online" onclick="closeModal('mains');openStripeModal('Duo Mains & Pieds',72)">Payer en ligne<span class="modal-cta-small">Créneau confirmé</span></button>
+  </div>
 </div></div>
 
 <div class="modal-overlay" id="modal-minceur"><div class="modal-box">
@@ -475,7 +536,10 @@
     <div class="modal-offer"><span class="offer-name">Soin minceur ciblé</span><span class="offer-duration">60 min</span><span class="offer-price">85€</span></div>
     <div class="modal-offer"><span class="offer-name">Programme 5 séances</span><span class="offer-duration">Suivi</span><span class="offer-price">350€</span></div>
   </div>
-  <button class="modal-stripe-btn" onclick="closeModal('minceur');openStripeModal('Séance Diagnostic Minceur',75)">Réserver & payer en ligne →</button>
+  <div class="modal-ctas">
+    <button class="modal-cta modal-cta-onsite" onclick="closeModal('minceur');bookOnSite()">Réserver<span class="modal-cta-small">Paiement sur place</span></button>
+    <button class="modal-cta modal-cta-online" onclick="closeModal('minceur');openStripeModal('Séance Diagnostic Minceur',75)">Payer en ligne<span class="modal-cta-small">Créneau confirmé</span></button>
+  </div>
 </div></div>
 
 <div class="modal-overlay" id="modal-epilation"><div class="modal-box">
@@ -490,7 +554,10 @@
     <div class="modal-offer"><span class="offer-name">Aisselles</span><span class="offer-duration">15 min</span><span class="offer-price">12€</span></div>
     <div class="modal-offer"><span class="offer-name">Corps complet</span><span class="offer-duration">90 min</span><span class="offer-price">90€</span></div>
   </div>
-  <button class="modal-stripe-btn" onclick="closeModal('epilation');openStripeModal('Épilation Jambes Complètes',35)">Réserver & payer en ligne →</button>
+  <div class="modal-ctas">
+    <button class="modal-cta modal-cta-onsite" onclick="closeModal('epilation');bookOnSite()">Réserver<span class="modal-cta-small">Paiement sur place</span></button>
+    <button class="modal-cta modal-cta-online" onclick="closeModal('epilation');openStripeModal('Épilation Jambes Complètes',35)">Payer en ligne<span class="modal-cta-small">Créneau confirmé</span></button>
+  </div>
 </div></div>
 
 <!-- MODAL STRIPE PAIEMENT -->
@@ -557,13 +624,19 @@
     </div>
 
   </div>
-  <p class="reveal" style="font-size:.68rem;color:rgba(255,255,255,.18);margin-top:18px">Remplacer par vos vraies photos clientes pour un impact maximum.</p>
 </section>
 
 <!-- AVIS -->
 <section class="reviews-section" id="avis">
   <div class="rev-header">
-    <div><p class="label reveal">Témoignages</p><h2 class="reveal d1">Ce que disent<br><em>nos clientes</em></h2></div>
+    <div>
+      <p class="label reveal">Témoignages</p>
+      <h2 class="reveal d1">Ce que disent<br><em>nos clientes</em></h2>
+      <a href="https://www.google.com/maps/place/La+Voie+du+Mieux+Etre" target="_blank" rel="noopener" class="rev-verified reveal d2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Avis vérifiés · Google &amp; Facebook
+      </a>
+    </div>
     <div class="rev-nav reveal d2">
       <button class="rev-btn" onclick="slideRev(-1)"><svg viewBox="0 0 18 18"><polyline points="11 4 6 9 11 14"/></svg></button>
       <div class="rev-dots" id="revDots"></div>
@@ -714,6 +787,43 @@
       <div id="gift-error"></div>
       <button class="stripe-pay-btn" id="gift-pay-btn" onclick="handleGiftPayment()">Offrir maintenant →</button>
       <p class="stripe-notice">🔒 Paiement sécurisé par Stripe · Livraison immédiate par email</p>
+      <div class="gift-reassurance">
+        <div class="gift-re-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>Livré instantanément par email</div>
+        <div class="gift-re-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Valable 1 an à compter de l'achat</div>
+        <div class="gift-re-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H6a2 2 0 010-4h12v4"/><path d="M20 12v4H6a2 2 0 000 4h14v-4"/></svg>Utilisable sur tous les soins</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="faq-inner">
+    <div class="faq-header">
+      <p class="label reveal" style="color:var(--jade)">Questions fréquentes</p>
+      <h2 class="reveal d1" style="color:var(--jade-deep)">Tout ce qu'il faut<br><em style="font-style:italic;color:var(--jade-light)">savoir avant</em></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Comment se déroule un premier rendez-vous ?<span class="faq-plus"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Chaque premier soin commence par un échange de quelques minutes pour comprendre vos besoins, votre type de peau et vos attentes. J'adapte ensuite le protocole à votre situation — vous ne payez que le soin choisi, pas de supplément diagnostic.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Dois-je payer au moment de la réservation ?<span class="faq-plus"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Vous avez le choix : réserver votre créneau et <strong>payer sur place</strong> le jour du soin (CB, espèces, chèque), ou <strong>payer en ligne</strong> dès maintenant pour garantir votre créneau. Les deux options sont disponibles pour chaque prestation.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Puis-je annuler ou déplacer mon rendez-vous ?<span class="faq-plus"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Oui, sans frais jusqu'à 24h avant votre rendez-vous. Au-delà, le créneau est considéré comme réservé — ces conditions permettent d'offrir le créneau à une autre cliente en cas d'imprévu.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Les soins énergétiques sont-ils adaptés à tout le monde ?<span class="faq-plus"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">Les soins énergétiques s'adressent à toutes les personnes qui souhaitent allier bien-être physique et émotionnel — aucune croyance particulière n'est requise. En cas de grossesse, de traitement médical ou de question de santé spécifique, merci de m'en informer avant le rendez-vous.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Où se trouve l'institut et y a-t-il un parking ?<span class="faq-plus"></span></button>
+        <div class="faq-a"><div class="faq-a-inner">L'institut se trouve au 150 rue des Couenneaux, à Bois d'Amont (39220), à deux pas des Rousses au cœur du Jura. Parking gratuit devant l'institut.</div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -777,6 +887,9 @@
   </div>
 </div>
 
+<!-- STICKY MOBILE CTA -->
+<a href="#rdv" class="sticky-mobile-cta">📅 Voir <strong>les disponibilités</strong></a>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
@@ -787,7 +900,7 @@
       <li><a href="#rdv">Rendez-vous</a></li><li><a href="#contact">Contact</a></li>
       <li><a href="#">Mentions légales</a></li>
     </ul>
-    <a href="#rdv" class="footer-cta">Prendre rendez-vous</a>
+    <a href="#rdv" class="footer-cta">Réserver mon moment</a>
   </div>
   <div class="footer-bottom">
     <p class="footer-copy">© 2025 La Voie du Mieux Être — Bois d'Amont, Jura</p>
@@ -796,6 +909,15 @@
 </footer>
 
 <script>
+
+// ── NOUVELLES FONCTIONS UX ──
+function bookOnSite() {
+  window.open('https://app.kiute.com/metamorphose-1','_blank');
+}
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  item.classList.toggle('open');
+}
 
 // ── HERO : image fixe, pas de fondu ──
 // (hero-img-scroll masquée, hero-img-bg reste à 100% d'opacité)
